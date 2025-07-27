@@ -1,0 +1,14 @@
+# .gitignore
+
+/vendor/
+/node_modules/
+/.env
+.env.local
+.DS_Store
+*.log
+/public/uploads/
+/storage/
+/var/
+/.idea/
+/.vscode/
+/docker/*.pid

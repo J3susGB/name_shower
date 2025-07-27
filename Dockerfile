@@ -10,8 +10,8 @@ WORKDIR /var/www/html
 
 # Instalar extensiones necesarias
 RUN apt-get update && apt-get install -y \
-    unzip git curl libpq-dev libzip-dev zip \
-    && docker-php-ext-install pdo pdo_pgsql zip
+    unzip git curl libpq-dev libzip-dev zip libicu-dev \
+    && docker-php-ext-install intl pdo pdo_pgsql zip
 
 # Activar mod_rewrite para Symfony
 RUN a2enmod rewrite

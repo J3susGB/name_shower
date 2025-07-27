@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { GiftService } from '../../services/gift.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-admin-panel',
@@ -24,7 +25,7 @@ export class AdminPanelComponent implements OnInit {
     enlace: ''
   };
 
-  private TOKEN_SECRETO = '8QJrUjvs???';
+  private readonly TOKEN_SECRETO = environment.adminToken;
 
   constructor(
     private http: HttpClient,

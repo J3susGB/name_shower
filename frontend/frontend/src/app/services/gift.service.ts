@@ -2,15 +2,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class GiftService {
-  private base = 'http://localhost:8000/api/gifts';
-  private adminBase = 'http://localhost:8000/api/admin/gifts';
+  private base = `${environment.apiUrl}/gifts`;
+  private adminBase = `${environment.apiUrl}/admin/gifts`;
 
-  // http://localhost:4200/admin/panel?token=8QJrUjvs???
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Públicos
   getAll(): Observable<any[]> {
@@ -30,7 +29,6 @@ export class GiftService {
     console.log('➡️ Enviando al backend:', body);
     return this.http.post(this.adminBase, body);
   }
-
 
   eliminarGift(id: number): Observable<any> {
     return this.http.delete(`${this.adminBase}/${id}`);

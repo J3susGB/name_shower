@@ -2,24 +2,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PredictionService {
-  private apiUrl = 'http://localhost:8000/api/predicciones';
+  private baseUrl = `${environment.apiUrl}/predicciones`;
+  private adminUrl = `${environment.apiUrl}/admin/predicciones`;
 
   constructor(private http: HttpClient) {}
 
   enviarPrediccion(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.baseUrl, data);
   }
 
   obtenerEstadisticas(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/estadisticas`);
+    return this.http.get(`${this.baseUrl}/estadisticas`);
   }
 
   obtenerTodas(): Observable<any> {
-    return this.http.get('http://localhost:8000/api/admin/predicciones');
+    return this.http.get(this.adminUrl);
   }
 }

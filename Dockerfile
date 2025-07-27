@@ -24,6 +24,7 @@ COPY --from=frontend /app/dist /var/www/html/public
 
 # Instalar Composer y dependencias
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+ENV APP_ENV=prod
 RUN composer install --no-dev --optimize-autoloader
 
 # Configurar Apache

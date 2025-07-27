@@ -1,0 +1,98 @@
+<!-- src/app/components/prediction-form/prediction-form.component.html -->
+<div class="max-w-xl w-full mx-auto mt-10 p-6 border border-gray-600 rounded-xl shadow-lg bg-gray-800 text-gray-200" *ngIf="!enviado">
+  <h2 class="text-2xl font-bold mb-6 text-center text-yellow-500">Haz tu predicción</h2>
+
+  <form (ngSubmit)="enviar()" class="space-y-4">
+    <!-- Nombre del autor -->
+    <input
+      [(ngModel)]="nombreAutor"
+      name="nombreAutor"
+      required
+      placeholder="Tu nombre"
+      class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+    />
+
+    <!-- Selección de sexo -->
+    <select
+      [(ngModel)]="sexoPredicho"
+      name="sexoPredicho"
+      required
+      class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+    >
+      <option value="" disabled selected>¿Qué crees que será?</option>
+      <option value="Niño y niña">Niño y niña</option>
+      <option value="Niños">Niños</option>
+      <option value="Niñas">Niñas</option>
+    </select>
+
+    <!-- Niño y niña -->
+    <div *ngIf="sexoPredicho === 'Niño y niña'" class="space-y-2">
+      <input
+        [(ngModel)]="nombreNino"
+        name="nombreNino"
+        required
+        placeholder="Nombre para niño"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+      />
+      <input
+        [(ngModel)]="nombreNina"
+        name="nombreNina"
+        required
+        placeholder="Nombre para niña"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+      />
+    </div>
+
+    <!-- Dos niños -->
+    <div *ngIf="sexoPredicho === 'Niños'" class="space-y-2">
+      <input
+        [(ngModel)]="nombreNino"
+        name="nombreNino"
+        required
+        placeholder="Nombre niño 1"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+      />
+      <input
+        [(ngModel)]="nombreNino2"
+        name="nombreNino2"
+        required
+        placeholder="Nombre niño 2"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+      />
+    </div>
+
+    <!-- Dos niñas -->
+    <div *ngIf="sexoPredicho === 'Niñas'" class="space-y-2">
+      <input
+        [(ngModel)]="nombreNina"
+        name="nombreNina"
+        required
+        placeholder="Nombre niña 1"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+      />
+      <input
+        [(ngModel)]="nombreNina2"
+        name="nombreNina2"
+        required
+        placeholder="Nombre niña 2"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
+      />
+    </div>
+
+    <!-- Botón enviar -->
+    <button
+      type="submit"
+      class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded w-full transition"
+    >
+      Enviar
+    </button>
+
+    <!-- Mensaje de error -->
+    <p class="text-red-500 text-center font-medium" *ngIf="error">{{ error }}</p>
+  </form>
+</div>
+
+<!-- Mensaje de agradecimiento -->
+<div *ngIf="enviado" class="text-center mt-10 text-green-400 text-xl font-semibold">
+  ¡Gracias por tu predicción!
+</div>

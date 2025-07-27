@@ -1,0 +1,41 @@
+<div class="w-full px-4 sm:px-6 py-6 flex justify-center">
+	<div class="w-full max-w-4xl bg-gray-800 border border-gray-600 shadow-lg rounded-xl space-y-6 text-gray-200 p-6">
+
+		<h2 class="text-2xl md:text-3xl font-bold text-center text-yellow-600 flex items-center justify-center gap-2">
+			<span class="text-3xl animate-bounce">🍼</span>
+			Lista de nacimiento
+		</h2>
+
+		<div *ngIf="error" class="text-red-400 font-semibold text-center">{{ error }}</div>
+		<div *ngIf="success" class="text-green-400 font-semibold text-center">{{ success }}</div>
+
+		<div *ngFor="let gift of gifts" class="border border-gray-600 p-4 rounded-xl shadow-md space-y-2 bg-gray-700">
+			<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+				<div>
+					<h3 class="text-xl font-semibold text-white">{{ gift.nombre }}</h3>
+					<p class="text-gray-300 text-sm">Unidad:
+						{{ gift.unidad }}
+						–
+						{{ gift.precio }}
+						€</p>
+				</div>
+				<a [href]="gift.enlace" target="_blank" class="text-yellow-600 hover:text-yellow-500 font-medium transition underline underline-offset-2">
+					Ver producto
+				</a>
+			</div>
+
+			<div *ngIf="gift.reservado" class="text-green-400 font-semibold text-sm">
+				Ya ha sido reservado por:
+				<span class="italic">{{ gift.comprador }}</span>
+			</div>
+
+			<div *ngIf="!gift.reservado" class="flex flex-col sm:flex-row gap-2 sm:items-center mt-2">
+				<input type="text" [(ngModel)]="inputNombres[gift.id]" placeholder="Tu nombre" class="bg-gray-900 text-white border border-gray-600 rounded px-3 py-2 w-full sm:w-auto placeholder-gray-400"/>
+
+				<button (click)="reservar(gift.id, inputNombres[gift.id])" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg transition">
+					¡Me lo pido!
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

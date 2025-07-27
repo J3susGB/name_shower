@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PredictionFormComponent } from '../prediction-form/prediction-form.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-root', // Esto debe coincidir con index.html
+  selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, PredictionFormComponent],
+  imports: [CommonModule, PredictionFormComponent, RouterModule],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })

@@ -2,21 +2,25 @@
 <div class="max-w-xl w-full mx-auto mt-10 p-6 border border-gray-600 rounded-xl shadow-lg bg-gray-800 text-gray-200" *ngIf="!enviado">
   <h2 class="text-2xl font-bold mb-6 text-center text-yellow-500">Haz tu predicción</h2>
 
-  <form (ngSubmit)="enviar()" class="space-y-4">
+  <form #form="ngForm" (ngSubmit)="enviar(form)" class="space-y-4" novalidate>
+
     <!-- Nombre del autor -->
     <input
       [(ngModel)]="nombreAutor"
       name="nombreAutor"
       required
       placeholder="Tu nombre"
+      #nombreAutorRef="ngModel"
       class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
     />
+    <p *ngIf="nombreAutorRef.invalid && nombreAutorRef.touched" class="text-red-400 text-sm">El nombre es obligatorio.</p>
 
     <!-- Selección de sexo -->
     <select
       [(ngModel)]="sexoPredicho"
       name="sexoPredicho"
       required
+      #sexoRef="ngModel"
       class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
     >
       <option value="" disabled selected>¿Qué crees que será?</option>
@@ -24,65 +28,52 @@
       <option value="Niños">Niños</option>
       <option value="Niñas">Niñas</option>
     </select>
+    <p *ngIf="sexoRef.invalid && sexoRef.touched" class="text-red-400 text-sm">Debes seleccionar una opción.</p>
 
     <!-- Niño y niña -->
     <div *ngIf="sexoPredicho === 'Niño y niña'" class="space-y-2">
-      <input
-        [(ngModel)]="nombreNino"
-        name="nombreNino"
-        required
-        placeholder="Nombre para niño"
-        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
-      />
-      <input
-        [(ngModel)]="nombreNina"
-        name="nombreNina"
-        required
-        placeholder="Nombre para niña"
-        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
-      />
+      <input [(ngModel)]="nombreNino" name="nombreNino" required placeholder="Nombre para niño"
+        #nino1="ngModel"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition" />
+      <p *ngIf="nino1.invalid && nino1.touched" class="text-red-400 text-sm">Nombre para niño obligatorio.</p>
+
+      <input [(ngModel)]="nombreNina" name="nombreNina" required placeholder="Nombre para niña"
+        #nina1="ngModel"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition" />
+      <p *ngIf="nina1.invalid && nina1.touched" class="text-red-400 text-sm">Nombre para niña obligatorio.</p>
     </div>
 
     <!-- Dos niños -->
     <div *ngIf="sexoPredicho === 'Niños'" class="space-y-2">
-      <input
-        [(ngModel)]="nombreNino"
-        name="nombreNino"
-        required
-        placeholder="Nombre niño 1"
-        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
-      />
-      <input
-        [(ngModel)]="nombreNino2"
-        name="nombreNino2"
-        required
-        placeholder="Nombre niño 2"
-        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
-      />
+      <input [(ngModel)]="nombreNino" name="nombreNino" required placeholder="Nombre niño 1"
+        #nino2a="ngModel"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition" />
+      <p *ngIf="nino2a.invalid && nino2a.touched" class="text-red-400 text-sm">Primer nombre obligatorio.</p>
+
+      <input [(ngModel)]="nombreNino2" name="nombreNino2" required placeholder="Nombre niño 2"
+        #nino2b="ngModel"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition" />
+      <p *ngIf="nino2b.invalid && nino2b.touched" class="text-red-400 text-sm">Segundo nombre obligatorio.</p>
     </div>
 
     <!-- Dos niñas -->
     <div *ngIf="sexoPredicho === 'Niñas'" class="space-y-2">
-      <input
-        [(ngModel)]="nombreNina"
-        name="nombreNina"
-        required
-        placeholder="Nombre niña 1"
-        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
-      />
-      <input
-        [(ngModel)]="nombreNina2"
-        name="nombreNina2"
-        required
-        placeholder="Nombre niña 2"
-        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition"
-      />
+      <input [(ngModel)]="nombreNina" name="nombreNina" required placeholder="Nombre niña 1"
+        #nina2a="ngModel"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition" />
+      <p *ngIf="nina2a.invalid && nina2a.touched" class="text-red-400 text-sm">Primer nombre obligatorio.</p>
+
+      <input [(ngModel)]="nombreNina2" name="nombreNina2" required placeholder="Nombre niña 2"
+        #nina2b="ngModel"
+        class="w-full bg-gray-900 border border-gray-700 px-4 py-2 rounded text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition" />
+      <p *ngIf="nina2b.invalid && nina2b.touched" class="text-red-400 text-sm">Segundo nombre obligatorio.</p>
     </div>
 
     <!-- Botón enviar -->
     <button
       type="submit"
-      class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded w-full transition"
+      [disabled]="form.invalid"
+      class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded w-full transition disabled:opacity-50 disabled:cursor-not-allowed"
     >
       Enviar
     </button>

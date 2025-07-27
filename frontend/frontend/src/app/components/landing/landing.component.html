@@ -1,64 +1,62 @@
 <div class="min-h-screen  text-gray-300 px-4 py-12 flex flex-col items-center justify-center">
-  <h1 class="text-4xl text-yellow-600 md:text-5xl font-bold mb-8 text-center">
-    ¡Bienvenido a la porra de predicciones!
-  </h1>
+	<h1 class="text-4xl text-yellow-600 md:text-5xl font-bold mb-8 text-center">
+		¡Bienvenido a la porra de predicciones!
+	</h1>
 
-  <div class="max-w-3xl text-center mb-8">
-    <h2 class="text-2xl font-semibold mb-4">¿Ayudas a nuestros papis con los nombres?</h2>
-    <p class="text-base md:text-lg leading-relaxed">
-      Como sabréis, nuestros papis no quieren saber el sexo hasta que nazcamos,
-      lo que complica la elección de nombres... ¡Tienen que elegir
-      dos nombres de niño y dos de niña!
-    </p>
-    <p class="mt-4 text-base md:text-lg leading-relaxed">
-      A continuación os dejamos nuestras caritas actuales. Sabemos que están hechas con IA y que pueden cambiar,
-      pero... ¡pueden daros una pista más o menos de cuál será nuestro sexo!
-    </p>
-  </div>
+	<div class="max-w-3xl text-center mb-8">
+		<h2 class="text-2xl font-semibold mb-4">¿Ayudas a nuestros papis con los nombres?</h2>
+		<p class="text-base md:text-lg leading-relaxed">
+			Como sabréis, nuestros papis no quieren saber el sexo hasta que nazcamos,
+						      lo que complica la elección de nombres... ¡Tienen que elegir
+						      dos nombres de niño y dos de niña!
+		</p>
+		<p class="mt-4 text-base md:text-lg leading-relaxed">
+			A continuación os dejamos nuestras caritas actuales. Sabemos que están hechas con IA y que pueden cambiar,
+						      pero... ¡pueden daros una pista más o menos de cuál será nuestro sexo!
+		</p>
+	</div>
 
-  <!-- Imagenes de los bebés -->
-  <div class="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-10 mb-10 w-full px-4">
-    <div class="flex flex-col text-center max-w-sm w-full border border-gray-600 rounded-xl shadow-lg p-4">
-      <img src="/assets/Bebe1.jpeg" alt="Bebé 1" class="w-full rounded-xl shadow-lg" />
-      <p class="mb-4 mt-2 text-sm md:text-base flex-1 flex items-end justify-center">
-        Soy el más pequeño/a de los dos, aunque seré el primero/a en nacer. En las ecografías me conocen como Bebé número 1
-      </p>
-    </div>
-    <div class="flex flex-col text-center max-w-sm w-full border border-gray-600 rounded-xl shadow-lg p-4">
-      <img src="/assets/Bebe2.jpeg" alt="Bebé 2" class="w-full rounded-xl shadow-lg" />
-      <p class="mb-4 mt-2 text-sm md:text-base flex-1 flex items-end justify-center">
-        Soy el mayor, y seré el segundo/a en nacer. En las ecografías me conocen como Bebé número 2
-      </p>
-    </div>
-  </div>
+	<!-- Imagenes de los bebés -->
+	<div class="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-10 mb-10 w-full px-4">
+		<div class="flex flex-col text-center max-w-sm w-full border border-gray-600 rounded-xl shadow-lg p-4">
+			<img src="/assets/Bebe1.jpeg" alt="Bebé 1" class="w-full rounded-xl shadow-lg"/>
+			<p class="mb-4 mt-2 text-sm md:text-base flex-1 flex items-end justify-center">
+				Soy el más pequeño/a de los dos, aunque seré el primero/a en nacer. En las ecografías me conocen como Bebé número 1
+			</p>
+		</div>
+		<div class="flex flex-col text-center max-w-sm w-full border border-gray-600 rounded-xl shadow-lg p-4">
+			<img src="/assets/Bebe2.jpeg" alt="Bebé 2" class="w-full rounded-xl shadow-lg"/>
+			<p class="mb-4 mt-2 text-sm md:text-base flex-1 flex items-end justify-center">
+				Soy el mayor, y seré el segundo/a en nacer. En las ecografías me conocen como Bebé número 2
+			</p>
+		</div>
+	</div>
 
-  <p class="text-2xl text-center mb-8 max-w-2xl">
-    Nos encantaría que participes en este momento tan especial e importante (a ver el nombre que nos ponen estos) dejando tu predicción
-    sobre nuestro sexo y proponiendo nuestros nombres.
-  </p>
+	<p class="text-2xl text-center mb-8 max-w-2xl">
+		Nos encantaría que participes en este momento tan especial e importante (a ver el nombre que nos ponen estos) dejando tu predicción
+				    sobre nuestro sexo y proponiendo nuestros nombres.
+	</p>
 
-  <!-- Componente de predicción -->
-  <app-prediction-form></app-prediction-form>
+	<!-- Componente de predicción -->
+	<app-prediction-form></app-prediction-form>
 
-  <!-- Sección lista de nacimiento -->
-<div class="max-w-2xl mx-auto mt-16 p-6 bg-gray-800 border border-gray-600 rounded-xl shadow-lg text-center text-gray-200">
-  <h2 class="text-xl md:text-2xl font-semibold mb-4 text-yellow-500 flex items-center justify-center gap-2">
-    <span class="animate-bounce text-2xl">🎁</span>
-    ¿Quieres colaborar con nuestros papis?
-  </h2>
-  <p class="text-base md:text-lg leading-relaxed mb-6">
-    Si te hace ilusión nuestra llegada como a nuestros papis y queréis colaborar con ellos en nuestra lista de nacimiento,<br />
-    <span class="font-semibold">¡pulsa aquí abajo!</span>
-  </p>
-  <a
-    href="https://enlace-a-tu-lista.com"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="inline-flex items-center gap-2 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded transition animate-pulse group"
-  >
-    Ver lista de nacimiento
-    <span class="transform transition-transform duration-300 group-hover:translate-x-1">➡️</span>
-  </a>
-</div>
+	<a [routerLink]="['/ver-predicciones']" class="text-yellow-400 hover:text-yellow-300 font-semibold underline mt-4 block text-center">
+		Ver predicciones
+	</a>
 
+	<!-- Sección lista de nacimiento -->
+	<div class="max-w-2xl mx-auto mt-16 p-6 bg-gray-800 border border-gray-600 rounded-xl shadow-lg text-center text-gray-200">
+		<h2 class="text-xl md:text-2xl font-semibold mb-4 text-yellow-500 flex items-center justify-center gap-2">
+			<span class="animate-bounce text-2xl">🍼</span>
+			¿Quieres colaborar con nuestros papis?
+		</h2>
+		<p class="text-base md:text-lg leading-relaxed mb-6">
+			Si te hace ilusión nuestra llegada como a nuestros papis y queréis colaborar con ellos en nuestra lista de nacimiento,<br/>
+			<span class="font-semibold">¡pulsa aquí abajo!</span>
+		</p>
+		<a [routerLink]="['/regalos']" class="cursor-pointer inline-flex items-center gap-2 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded transition animate-pulse group">
+			Ver lista de nacimiento
+			<span class="transform transition-transform duration-300 group-hover:translate-x-1">➡️</span>
+		</a>
+	</div>
 </div>

@@ -1,0 +1,80 @@
+<div *ngIf="tokenValido; else accesoDenegado" class="min-h-screen text-gray-300 px-4 py-12 flex flex-col items-center justify-center bg-gray-900">
+  <h2 class="text-4xl md:text-5xl font-bold mb-8 text-yellow-600 text-center">
+    🍼 Administración Lista de Nacimiento
+  </h2>
+
+  <!-- Formulario de creación -->
+  <div class="bg-gray-800 border border-gray-600 shadow-xl rounded-xl p-6 mb-12 w-full max-w-4xl text-gray-200">
+    <h3 class="text-2xl font-semibold mb-4 text-yellow-600">Añadir nuevo regalo</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-300 mb-1">Nombre del regalo</label>
+        <input type="text" [(ngModel)]="nuevoRegalo.nombre" placeholder="Ej. Trona portátil"
+          class="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500 text-white" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-300 mb-1">Precio (€)</label>
+        <input type="number" [(ngModel)]="nuevoRegalo.precio" placeholder="Ej. 29.99"
+          class="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500 text-white" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-300 mb-1">Unidades</label>
+        <input type="number" [(ngModel)]="nuevoRegalo.unidad" placeholder="Ej. 1"
+          class="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500 text-white" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-300 mb-1">Enlace al producto</label>
+        <input type="text" [(ngModel)]="nuevoRegalo.enlace" placeholder="Ej. https://amazon.es/..."
+          class="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500 text-white" />
+      </div>
+    </div>
+
+    <button (click)="crear()"
+      class="mt-6 inline-flex items-center gap-2 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded transition">
+      Crear
+    </button>
+  </div>
+
+  <!-- Tabla de regalos -->
+  <div class="bg-gray-800 border border-gray-600 shadow-xl rounded-xl w-full max-w-6xl overflow-x-auto text-sm text-gray-200">
+    <table class="w-full border-collapse">
+      <thead class="bg-gray-700 text-yellow-600 uppercase text-xs font-bold">
+        <tr>
+          <th class="px-4 py-3 border border-gray-600">Nombre</th>
+          <th class="px-4 py-3 border border-gray-600">Precio</th>
+          <th class="px-4 py-3 border border-gray-600">Unidades</th>
+          <th class="px-4 py-3 border border-gray-600">Reservado</th>
+          <th class="px-4 py-3 border border-gray-600">Comprador</th>
+          <th class="px-4 py-3 border border-gray-600">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let regalo of regalos" class="border-t border-gray-700 hover:bg-gray-700/50 transition">
+          <td class="px-4 py-2 border border-gray-600">{{ regalo.nombre }}</td>
+          <td class="px-4 py-2 border border-gray-600">{{ regalo.precio }} €</td>
+          <td class="px-4 py-2 border border-gray-600">{{ regalo.unidad }}</td>
+          <td class="px-4 py-2 border border-gray-600 text-center">
+            <span [ngClass]="regalo.reservado ? 'text-green-400' : 'text-red-400'">
+              {{ regalo.reservado ? '✅' : '❌' }}
+            </span>
+          </td>
+          <td class="px-4 py-2 border border-gray-600">{{ regalo.comprador || '-' }}</td>
+          <td class="px-4 py-2 border border-gray-600 text-center">
+            <button (click)="eliminar(regalo.id)"
+              class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs transition">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #accesoDenegado>
+  <div class="text-center mt-20 text-red-500 text-xl font-semibold">
+    Acceso denegado.
+  </div>
+</ng-template>

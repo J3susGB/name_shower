@@ -66,4 +66,51 @@ class PredictionController extends AbstractController
 
         return $this->json($data);
     }
+
+    #[Route('/api/predicciones/estadisticas', name: 'api_predicciones_estadisticas', methods: ['GET'])]
+    public function estadisticas(PredictionRepository $repository): JsonResponse
+    {
+        $predicciones = $repository->findAll();
+
+        $combinaciones = [
+            'Niños' => 0,
+            'Niñas' => 0,
+            'Niño y niña' => 0
+        ];
+
+        $nombresNino = [];
+        $nombresNina = [];
+
+        foreach ($predicciones as $p) {
+            $sexo = $p->getSexoPredicho();
+            if (isset($combinaciones[$sexo])) {
+                $combinaciones[$sexo]++;
+            }
+
+            foreach ([$p->getNombreNino(), $p->getNombreNino2()] as $nino) {
+                if ($nino) {
+                    $nombre = ucfirst(strtolower(trim($nino)));
+                    $nombresNino[$nombre] = ($nombresNino[$nombre] ?? 0) + 1;
+                }
+            }
+
+            foreach ([$p->getNombreNina(), $p->getNombreNina2()] as $nina) {
+                if ($nina) {
+                    $nombre = ucfirst(strtolower(trim($nina)));
+                    $nombresNina[$nombre] = ($nombresNina[$nombre] ?? 0) + 1;
+                }
+            }
+        }
+
+        arsort($nombresNino);
+        arsort($nombresNina);
+
+        return $this->json([
+            'status' => 'success',
+            'combinaciones' => $combinaciones,
+            'nombres_nino' => array_map(fn($nombre, $total) => ['nombre' => $nombre, 'total' => $total], array_keys($nombresNino), $nombresNino),
+            'nombres_nina' => array_map(fn($nombre, $total) => ['nombre' => $nombre, 'total' => $total], array_keys($nombresNina), $nombresNina),
+        ]);
+    }
+
 }

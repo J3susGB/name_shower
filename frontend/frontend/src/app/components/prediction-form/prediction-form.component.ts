@@ -23,25 +23,27 @@ export class PredictionFormComponent {
 
   constructor(private predictionService: PredictionService) {}
 
-  enviar() {
-    const payload = {
-      nombreAutor: this.nombreAutor,
-      sexoPredicho: this.sexoPredicho,
-      nombreNino: this.nombreNino,
-      nombreNina: this.nombreNina,
-      nombreNino2: this.nombreNino2 || null,
-      nombreNina2: this.nombreNina2 || null
-    };
+  enviar(form: any) {
+  if (form.invalid) return;
 
-    this.predictionService.enviarPrediccion(payload).subscribe({
-      next: () => {
-        this.enviado = true;
-        this.error = '';
-      },
-      error: err => {
-        this.error = 'Error al enviar la predicción';
-        console.error(err);
-      }
-    });
-  }
+  const payload = {
+    nombreAutor: this.nombreAutor,
+    sexoPredicho: this.sexoPredicho,
+    nombreNino: this.nombreNino,
+    nombreNina: this.nombreNina,
+    nombreNino2: this.nombreNino2 || null,
+    nombreNina2: this.nombreNina2 || null
+  };
+
+  this.predictionService.enviarPrediccion(payload).subscribe({
+    next: () => {
+      this.enviado = true;
+      this.error = '';
+    },
+    error: err => {
+      this.error = 'Error al enviar la predicción';
+      console.error(err);
+    }
+  });
+}
 }

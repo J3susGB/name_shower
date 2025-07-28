@@ -1,15 +1,18 @@
 <?php
 
+// src/Controller/DefaultController.php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
-    #[Route('/{any}', name: 'app_frontend', requirements: ['any' => '^(?!api).*$'])]
-    public function index(): Response
+    #[Route('/', name: 'app_home')]
+    public function index(): RedirectResponse
     {
-        return new Response(file_get_contents(__DIR__ . '/../../public/index.html'));
+        return $this->redirect('/landing');
     }
 }
+

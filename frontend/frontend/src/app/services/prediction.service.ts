@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { buildApiUrl } from '../utils/api-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PredictionService {
-  private baseUrl = `${environment.apiUrl}/predicciones`;
-  private adminUrl = `${environment.apiUrl}/admin/predicciones`;
+  private baseUrl = buildApiUrl('predicciones');
+  private adminUrl = buildApiUrl('admin/predicciones');
 
   constructor(private http: HttpClient) {}
 

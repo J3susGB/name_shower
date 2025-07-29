@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { buildApiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class GiftService {
-  private base = `${environment.apiUrl}/gifts`;
-  private adminBase = `${environment.apiUrl}/admin/gifts`;
+  private base = buildApiUrl('gifts');
+  private adminBase = buildApiUrl('admin/gifts');
 
   constructor(private http: HttpClient) {}
 

@@ -1,10 +1,4 @@
-# Etapa 1: Compilar Angular
-FROM node:20 AS frontend
-WORKDIR /app
-COPY frontend/frontend/ .
-RUN npm install && npm run build --configuration=production
-
-# Etapa 2: Symfony + Apache
+# Etapa única: Symfony + Apache
 FROM php:8.2-apache
 WORKDIR /var/www/html
 
@@ -16,11 +10,8 @@ RUN apt-get update && apt-get install -y \
 # Activar mod_rewrite para Symfony
 RUN a2enmod rewrite
 
-# Copiar backend
+# Copiar backend con frontend ya generado en /public/landing
 COPY backend/ /var/www/html/
-
-# Copiar frontend compilado al public/
-COPY --from=frontend /app/dist /var/www/html/public
 
 # Instalar Composer y dependencias
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

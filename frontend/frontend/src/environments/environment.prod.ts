@@ -1,6 +1,5 @@
-// environment.prod.ts (producción)
 export const environment = {
   production: true,
-  apiUrl: 'https://nameshower.up.railway.app/api',
+  apiUrl: '/api',
   adminToken: '8QJrUjvs???'
 };

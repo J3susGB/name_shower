@@ -1,6 +1,7 @@
 <?php
-header("Location: /landing/");
-exit;
+
+//header("Location: /landing/");
+//exit;
 
 use App\Kernel;
 

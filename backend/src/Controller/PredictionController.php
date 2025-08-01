@@ -29,7 +29,7 @@ class PredictionController extends AbstractController
             $prediction->setNombreNina($data['nombreNina']);
             $prediction->setNombreNino2($data['nombreNino2'] ?? null);
             $prediction->setNombreNina2($data['nombreNina2'] ?? null);
-            $prediction->setFecha(new \DateTimeImmutable());
+            $prediction->setFecha(new \DateTimeImmutable('now', new \DateTimeZone('Europe/Madrid')));
 
             $em->persist($prediction);
             $em->flush();

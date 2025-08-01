@@ -1,13 +1,13 @@
 RewriteEngine On
 
-# No tocar archivos reales
+# Ignorar archivos y carpetas reales
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Ignorar rutas que empiecen por /landing
+# No tocar /landing (Angular)
 RewriteCond %{REQUEST_URI} ^/landing
 RewriteRule ^ - [L]
 
-# El resto, Symfony
+# Redirigir todo lo demás a Symfony
 RewriteRule ^ index.php [QSA,L]

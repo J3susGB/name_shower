@@ -1,3 +1,13 @@
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
+
+# No tocar archivos reales
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Ignorar rutas que empiecen por /landing
+RewriteCond %{REQUEST_URI} ^/landing
+RewriteRule ^ - [L]
+
+# El resto, Symfony
 RewriteRule ^ index.php [QSA,L]

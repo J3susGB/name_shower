@@ -15,7 +15,7 @@ class GiftController extends AbstractController
     #[Route('/api/gifts', name: 'api_gifts_list', methods: ['GET'])]
     public function list(GiftRepository $repo): JsonResponse
     {
-        $gifts = $repo->findAll();
+        $gifts = $repo->findAllOrdered();
 
         $data = array_map(fn(Gift $gift) => [
             'id' => $gift->getId(),

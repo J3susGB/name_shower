@@ -1,13 +1,16 @@
 RewriteEngine On
 
-# Ignorar archivos y carpetas reales
+# 1) Si el archivo o carpeta existe, servirlo tal cual
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# No tocar /landing (Angular)
-RewriteCond %{REQUEST_URI} ^/landing
-RewriteRule ^ - [L]
+# 2) Fallback para Angular bajo /landing/** -> servir landing/index.html
+#    (solo si no existe archivo/carpeta real)
+RewriteCond %{REQUEST_URI} ^/landing($|/.*)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ landing/index.html [L]
 
-# Redirigir todo lo demás a Symfony
+# 3) Todo lo demás que lo maneje Symfony
 RewriteRule ^ index.php [QSA,L]

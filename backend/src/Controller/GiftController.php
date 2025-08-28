@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GiftController extends AbstractController
 {
+
     #[Route('/api/gifts', name: 'api_gifts_list', methods: ['GET'])]
     public function list(GiftRepository $repo): JsonResponse
     {
